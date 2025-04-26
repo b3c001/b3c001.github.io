@@ -1,33 +1,167 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>0xB3C001</title>
+    <title>0xB3C001 - Cyberpunk Revolution</title>
+
+    <!-- Fonte Cyber -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
     <style>
         body {
-            background-color: black;
-            color: white;
-            font-family: Tahoma, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: black;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            color: #00fff7;
             text-align: center;
+            z-index: 1;
         }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 50px 20px;
+        }
+
         h1 {
-            color: red;
+            font-size: 3em;
+            color: #ff00c8;
+            text-shadow: 0 0 5px #ff00c8, 0 0 10px #ff00c8;
+            position: relative;
+            animation: glitch 1s infinite;
+        }
+
+        p {
+            margin: 20px auto;
+            max-width: 700px;
+            font-size: 1.2em;
+            line-height: 1.5;
+            color: #00fff7;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            color: black;
+            background: #00fff7;
+            border-radius: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: none;
+            box-shadow: 0 0 15px #00fff7, 0 0 30px #00fff7;
+            transition: 0.4s;
+            font-size: 1.2em;
+        }
+
+        a:hover {
+            background: #ff00c8;
+            box-shadow: 0 0 15px #ff00c8, 0 0 30px #ff00c8;
+            color: white;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 2px 2px #ff00c8, -2px -2px #00fff7;
+            }
+            20% {
+                text-shadow: -2px -2px #ff00c8, 2px 2px #00fff7;
+            }
+            40% {
+                text-shadow: 2px -2px #ff00c8, -2px 2px #00fff7;
+            }
+            60% {
+                text-shadow: -2px 2px #ff00c8, 2px -2px #00fff7;
+            }
+            80% {
+                text-shadow: 2px 2px #ff00c8, -2px -2px #00fff7;
+            }
+            100% {
+                text-shadow: -2px -2px #ff00c8, 2px 2px #00fff7;
+            }
         }
     </style>
 </head>
 <body>
-    <center>
-        <h1> A Revolução cibernética começou.</h1>
-        <p>Desde os primórdios da computação a humanidade caminha para um futuro distópico, um futuro onde</p><br></br><p>as máquinas são mais presentes que a vida orgânica, a compreensão da realidade se dá por meio de equações matemáticas e não mais se confias nos sentidos, o racionalismo absoluto é a perspectiva primária e o empirismo já não existe.</p>
-<p> Mecanica e robótica são mais presentes que carne e ossos, Você é humano-máquina e está conectado 24hrs na rede mundial. Tudo isso por conta da necessidade de fazer operações algébricas mais rápido.</p>
-	    <h1>Bem vindos ao mundo Cyberpunk!</h1>
-	
-		<a href="https://discord.gg/cyberteam">Cyberteam Oficial</a>
-	    
-    </center>
+
+    <canvas id="stars"></canvas>
+
+    <div class="content">
+        <h1>A Revolução Cibernética começou.</h1>
+
+        <p>Desde os primórdios da computação, a humanidade caminha para um futuro distópico — um futuro onde as máquinas dominam a realidade orgânica.</p>
+
+        <p>Agora a compreensão do mundo se dá pela lógica fria das equações. Carne e ossos se rendem à mecânica e robótica. Você é humano-máquina, parte da rede global 24 horas por dia.</p>
+
+        <h1>Bem-vindos ao mundo Cyberpunk!</h1>
+
+        <a href="https://discord.gg/cyberteam" target="_blank">Cyberteam Oficial</a>
+    </div>
+
+    <script>
+        // Código para fundo animado de estrelas
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+
+        let stars = [], // array de estrelas
+            FPS = 60, // frames por segundo
+            x = 0, // posição x
+            mouseX = 0, mouseY = 0; // posição do mouse
+
+        for (let i = 0; i < 100; i++) {
+            stars.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                radius: Math.random() * 1.5,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5
+            });
+        }
+
+        function drawStars() {
+            ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+            ctx.fillStyle = "#00fff7";
+            ctx.beginPath();
+            for (let i = 0; i < stars.length; i++) {
+                let s = stars[i];
+                ctx.moveTo(s.x, s.y);
+                ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+            }
+            ctx.fill();
+            moveStars();
+        }
+
+        function moveStars() {
+            for (let i = 0; i < stars.length; i++) {
+                let s = stars[i];
+                s.x += s.vx;
+                s.y += s.vy;
+
+                if (s.x < 0 || s.x > window.innerWidth) s.vx = -s.vx;
+                if (s.y < 0 || s.y > window.innerHeight) s.vy = -s.vy;
+            }
+        }
+
+        setInterval(drawStars, 1000 / FPS);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        window.dispatchEvent(new Event('resize'));
+    </script>
+
 </body>
 </html>
