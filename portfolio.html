@@ -17,10 +17,12 @@
       padding: 20px;
       overflow-x: hidden;
     }
-    h1 {
+     h1 {
       color: #ff00c8;
-      text-shadow: 0 0 10px #ff00c8;
+      text-shadow: 0 0 5px #ff00c8, 0 0 10px #ff00c8;
       margin-bottom: 20px;
+      animation: glitch 1s infinite;
+    }
     }
     h2 {
       color: #00ff00;
@@ -55,6 +57,31 @@
       box-shadow: 0 0 15px #ff00c8, 0 0 30px #ff00c8;
       color: white;
     }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li::before {
+      content: "✦ ";
+      color: #ff00c8;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px #ff00c8, -2px -2px #00fff7; }
+      20% { text-shadow: -2px -2px #ff00c8, 2px 2px #00fff7; }
+      40% { text-shadow: 2px -2px #ff00c8, -2px 2px #00fff7; }
+      60% { text-shadow: -2px 2px #ff00c8, 2px -2px #00fff7; }
+      80% { text-shadow: 2px 2px #ff00c8, -2px -2px #00fff7; }
+      100% { text-shadow: -2px -2px #ff00c8, 2px 2px #00fff7; }
+    }
+
+    @keyframes screenGlitch {
+      0%, 97%, 100% { background-color: black; }
+      98% { background-color: #0ff; }
+      99% { background-color: #f0f; }
+    }
+    
   </style>
 </head>
 
@@ -64,8 +91,7 @@
 
   <p>Ativo no mundo digital desde 2015, trilho o caminho da segurança da informação com paixão e resiliência. Minha trajetória inclui projetos próprios, certificações reconhecidas e contribuições constantes na comunidade de tecnologia.</p>
 
-  <h2>🔮 Projeto em Destaque: <a href="https://github.com/b3c001/kingster" target="_blank">Kingster</a></h2>
-
+  <h2>🔮 Projeto em Destaque: </h2>
   <p><strong>Kingster</strong> é uma ferramenta avançada para domínio de ambientes King of The Hill (KOTH), focada em proteger, atacar e reverter manipulações de sistemas Linux. Desenvolvido com técnicas de defesa ativa, evasão e automação de hardening, o projeto é voltado para red teams e cenários CTF reais.</p>
 
   <a class="button" href="https://github.com/b3c001/kingster" target="_blank">Ver projeto no GitHub</a>
@@ -73,9 +99,9 @@
   <h2>📜 Certificações Conquistadas</h2>
 
   <p>
-    - <strong>Solyd Offensive Security</strong>: Formação em Ataques e Defesas Avançadas<br>
-    - <strong>Desec Security</strong>: Certificação em Pentest Profissional<br>
-    - <strong>Intelbras</strong>: Curso de Redes e Segurança Cibernética Aplicada
+    - <li><strong>Solyd Offensive Security</strong>: Formação em Hacking e pentest<br></li>
+    - <li><strong>Desec Security</strong>: Certificação em Pentest<br></li>
+    - <li><strong>Intelbras</strong>: Curso de Redes e Implementação de rotas</li>
   </p>
 
   <h2>💻 Presença Online</h2>
@@ -87,6 +113,8 @@
   <p>Busco atuar como <strong>Analista de Segurança da Informação</strong>, com ênfase em Red Team Operations, Pentest e Engenharia de Ataques. Estou em constante evolução técnica, com capacidade para antecipar ameaças, desenhar estratégias de proteção e atuar proativamente em ambientes corporativos modernos.</p>
 
   <a class="button" href="mailto:b3c001@proton.me">Entre em contato</a>
+  <a href="curriculo_0xb3c001.pdf" download>⬇️ Baixar Currículo</a>
+  <a href="index.html">🏠 Voltar para Home</a>
 
 </body>
 </html>
