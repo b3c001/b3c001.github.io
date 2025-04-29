@@ -1,0 +1,237 @@
+
+<!-- Detrew is the best waifu! -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SECURITY REPORT</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      overflow: hidden;
+      background: black;
+      color: #00fff7;
+      text-align: center;
+      animation: screenGlitch 5s infinite;
+    }
+
+    #intro {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: black;
+      color: #00ff00;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5em;
+      z-index: 10;
+    }
+
+    #loadingBar {
+      width: 300px;
+      height: 20px;
+      border: 2px solid #00ff00;
+      margin-top: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #progress {
+      height: 100%;
+      width: 0%;
+      background: #00ff00;
+      animation: loading 4s linear forwards;
+    }
+
+    @keyframes loading {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    #accessGranted {
+      display: none;
+      font-size: 2em;
+      color: #00ff00;
+      margin-top: 20px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0; }
+    }
+
+    #mainContent {
+      display: none;
+      position: relative;
+      z-index: 1;
+      padding: 15px 20px;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #ff00c8;
+      text-shadow: 0 0 3px #ff00c8, 0 0 5px #ff00c8;
+      animation: glitch 1s infinite;
+    }
+
+    p {
+      margin: 20px auto;
+      max-width: 700px;
+      font-size: 1.2em;
+      line-height: 1.5;
+      color: #00fff7;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 25px;
+      color: black;
+      background: #00fff7;
+      border-radius: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 15px #00fff7, 0 0 30px #00fff7;
+      transition: 0.4s;
+      font-size: 1.2em;
+    }
+
+    a:hover {
+      background: #ff00c8;
+      box-shadow: 0 0 15px #ff00c8, 0 0 30px #ff00c8;
+      color: white;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px #ff00c8, -2px -2px #00fff7; }
+      20% { text-shadow: -2px -2px #ff00c8, 2px 2px #00fff7; }
+      40% { text-shadow: 2px -2px #ff00c8, -2px 2px #00fff7; }
+      60% { text-shadow: -2px 2px #ff00c8, 2px -2px #00fff7; }
+      80% { text-shadow: 2px 2px #ff00c8, -2px -2px #00fff7; }
+      100% { text-shadow: -2px -2px #ff00c8, 2px 2px #00fff7; }
+    }
+
+    @keyframes screenGlitch {
+      0%, 97%, 100% { background-color: black; }
+      98% { background-color: #0ff; }
+      99% { background-color: #f0f; }
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="intro">
+    <div>Accessing system...</div>
+    <div id="loadingBar">
+      <div id="progress"></div>
+    </div>
+    <div id="accessGranted">ACCESS GRANTED</div>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <canvas id="stars"></canvas>  
+  <div id="mainContent">
+  <br>
+  <h1> 0xB3C001 - Security Breach Report</h1>
+  <p>Site tomado pacificamente pela cyberteam</p>
+  <p>Este domínio foi temporariamente modificado com o objetivo de relatar vulnerabilidades críticas encontradas em seu sistema. Esta ação foi realizada de forma ética, sem causar prejuízo à integridade, confidencialidade ou disponibilidade das informações.</p>
+  <p>Não houve cópia, modificação ou destruição de dados. Esta intervenção segue os princípios da "responsible disclosure" e visa alertar sobre a necessidade de reforço na sua segurança digital. Não se trata de um ataque malicioso, mas sim de uma prova de conceito com fins educativos.</p>
+  <p>Recomenda-se a correção imediata das falhas detectadas para evitar incidentes futuros com potenciais agentes mal-intencionados.</p>
+  <h1>Bem-vindo ao futuro da cibersegurança.</h1>
+  <a href="https://discord.gg/cyberteam" target="_blank">Fale conosco</a><br>
+  <a href="index_original.php" target="_blank">Clique aqui para restaurar o site</a><br>
+ <!-- <a href="en.html" target="_blank">
+    <img src="https://flagcdn.com/us.svg" alt="English Version" width="32" style="vertical-align: middle; margin-top: 20px;">
+    <span style="margin-left: 10px;">View in English</span>
+  </a> -->
+</div>
+
+   <audio id="hackerTyping" autoplay loop>
+    <source src="https://freesound.org/data/previews/270/270319_5121236-lq.mp3" type="audio/mpeg">
+   </audio>
+
+  <script>
+    // Animação de partículas
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+
+    let stars = [], FPS = 60;
+
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        radius: Math.random() * 1.5,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5
+      });
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      ctx.fillStyle = "#00fff7";
+      ctx.beginPath();
+      for (let i = 0; i < stars.length; i++) {
+        let s = stars[i];
+        ctx.moveTo(s.x, s.y);
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+      }
+      ctx.fill();
+      moveStars();
+    }
+
+    function moveStars() {
+      for (let i = 0; i < stars.length; i++) {
+        let s = stars[i];
+        s.x += s.vx;
+        s.y += s.vy;
+
+        if (s.x < 0 || s.x > window.innerWidth) s.vx = -s.vx;
+        if (s.y < 0 || s.y > window.innerHeight) s.vy = -s.vy;
+      }
+    }
+
+    setInterval(drawStars, 1000 / FPS);
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    window.dispatchEvent(new Event('resize'));
+
+    // Controle da intro
+    setTimeout(() => {
+      document.getElementById('accessGranted').style.display = 'block';
+    }, 4000); // após o loading
+
+    setTimeout(() => {
+      document.getElementById('intro').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+    }, 6000); // mostra o conteúdo depois
+  </script>
+
+</body>
+</html>
