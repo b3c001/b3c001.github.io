@@ -5,29 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>O Universo é Um Só: O Oceano Quântico e a Ilusão da Separação</title>
   <style>
-    body {
+    * {
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: black;
-      color: #00fff7;
-      margin: 0 auto;
       max-width: 900px;
-      padding: 1rem;
+      margin: 0 auto;
+      padding: 0;
+      box-sizing: border-box;
+      color: #00fff7; 
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      overflow: auto;
+      background: black;
       text-align: center;
-      position: relative;
-      z-index: 1;
-      overflow-y: auto; /* mantém scroll */
+      color: #00fff7; 
     }
     h1, h2, h3 {
       font-weight: 700;
       margin-top: 2rem;
-      color: #00fff7;
-      text-shadow: 0 0 8px #00fff7;
+      color: #00fff7; 
+      border-color: #00fff7; 
     }
     h1 {
       font-size: 2.2rem;
       border-bottom: 3px solid #00fff7;
       padding-bottom: 0.3rem;
-      margin-bottom: 1rem;
     }
     h2 {
       font-size: 1.6rem;
@@ -41,30 +44,28 @@
     p {
       margin: 1rem 0;
       font-size: 1rem;
-      line-height: 1.5;
+      color: #00fff7;
     }
     ul {
       margin-left: 1.5rem;
       margin-bottom: 1rem;
-      text-align: left;
-      color: #00d9cc;
+      color: #00fff7;
     }
     blockquote {
       font-style: italic;
-      color: #555;
+      color: #00fff7; 
       border-left: 4px solid #00fff7;
       padding-left: 1rem;
-      margin: 1rem 0;
-      background: rgba(0, 255, 247, 0.1);
-      text-align: left;
+      margin-left: 0;
+      margin-right: 0;
+      background: transparent; 
     }
     footer {
       margin-top: 3rem;
       border-top: 1px solid #00fff7;
       padding-top: 1rem;
       font-size: 0.9rem;
-      color: #555;
-      text-align: left;
+      color: #00fff7;
     }
     a {
       color: #00fff7;
@@ -73,62 +74,96 @@
     a:hover {
       text-decoration: underline;
     }
-
-    /* Canvas em background fixo */
-    #stars {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-      background: black;
-      display: block;
-    }
   </style>
+<script>
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+
+    let stars = [], FPS = 60;
+
+    for (let i = 0; i < 100; i++) {
+      stars.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        radius: Math.random() * 1.5,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5
+      });
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      ctx.fillStyle = "#00fff7";
+      ctx.beginPath();
+      for (let i = 0; i < stars.length; i++) {
+        let s = stars[i];
+        ctx.moveTo(s.x, s.y);
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+      }
+      ctx.fill();
+      moveStars();
+    }
+
+    function moveStars() {
+      for (let i = 0; i < stars.length; i++) {
+        let s = stars[i];
+        s.x += s.vx;
+        s.y += s.vy;
+
+        if (s.x < 0 || s.x > window.innerWidth) s.vx = -s.vx;
+        if (s.y < 0 || s.y > window.innerHeight) s.vy = -s.vy;
+      }
+    }
+
+    setInterval(drawStars, 1000 / FPS);
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    window.dispatchEvent(new Event('resize'));
+</script>
 </head>
 <body>
-  <canvas id="stars"></canvas>
+  <canvas id="stars" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></canvas>
 
   <h1>O Universo é Um Só: O Oceano Quântico e a Ilusão da Separação</h1>
-
-  <h2>Resumo</h2>
   <p>
     Este artigo aborda a hipótese monista na física contemporânea, sustentada pela Teoria Quântica de Campos (QFT), segundo a qual o universo é uma manifestação unificada de campos fundamentais em flutuação constante. A análise discute as propriedades do vácuo quântico, o papel das flutuações de partículas virtuais e o colapso da função de onda, demonstrando que a percepção de entidades separadas é uma consequência emergente da interação observador-sistema, e não uma característica ontológica fundamental. O trabalho destaca a distinção entre essa fundamentação científica e suas apropriações equivocadas no âmbito do esoterismo e da pseudociência.
   </p>
 
-  <h2>1. Introdução</h2>
+  <h2> I. Introdução</h2>
   <p>
     A fragmentação clássica do universo em entidades discretas — partículas, campos, energia, espaço-tempo — é confrontada pelas evidências teóricas e experimentais da física quântica moderna. A Teoria Quântica de Campos formaliza que todos os fenômenos são expressões de excitações diferenciadas de campos fundamentais contínuos permeando o espaço-tempo. A ontologia resultante é monista: a multiplicidade aparente das entidades é uma manifestação emergente de um substrato único.
   </p>
 
-  <h2>2. O vácuo quântico e suas flutuações</h2>
+  <h2>II. Flutuações do vácuo quântico</h2>
   <p>
     O conceito clássico de vácuo como "ausência total" é substituído pelo conceito físico moderno de vácuo quântico — estado fundamental do campo, caracterizado por uma energia não nula e por flutuações quânticas intrínsecas <sup>[1]</sup>. Essas flutuações produzem partículas virtuais que surgem e desaparecem em escalas temporais extremamente curtas, conforme descrito pela relação de incerteza de Heisenberg, constituindo um “oceano” dinâmico e não trivial.
   </p>
 
-  <h2>3. Campos fundamentais: a substância do real</h2>
+  <h2>III. Campos fundamentais: a substância do real</h2>
   <p>
     Na QFT, partículas são excitações quantizadas localizadas de campos subjacentes <sup>[4]</sup>. O elétron, por exemplo, não é um objeto isolado, mas uma manifestação do campo eletrônico; a luz, excitação do campo eletromagnético; a massa, resultado da interação com o Campo de Higgs <sup>[2]</sup>. Isso reconfigura nossa compreensão ontológica da matéria e da energia como variações modais de uma única entidade de base.
   </p>
 
-  <h2>4. Colapso da função de onda e o papel da observação</h2>
+  <h2>IV. Colapso da função de onda e o papel da observação</h2>
   <p>
     O formalismo da mecânica quântica descreve estados em superposição, onde sistemas coexistem em múltiplos estados simultâneos. A medição provoca o colapso da função de onda, determinando um resultado singular <sup>[3]</sup>. Este processo, não trivial e ainda objeto de debate, representa uma interação física fundamental entre observador e sistema, ressaltando a inseparabilidade do fenômeno e da percepção.
   </p>
 
-  <h2>5. Visão monista: implicações ontológicas</h2>
+  <h2>V. Visão monista: implicações ontológicas</h2>
   <p>
     A formalização da QFT e o fenômeno do colapso sugerem uma realidade ontológica unificada, onde a dualidade sujeito-objeto e a separação entre entidades são construções derivadas. O universo é concebido como um campo quântico único, onde multiplicidade é resultado de modulações e interações internas.
   </p>
 
-  <h2>6. Separação entre ciência e pseudociência</h2>
+  <h2>VI. Separação entre ciência e pseudociência</h2>
   <p>
     Embora o modelo monista seja cientificamente robusto, ele é frequentemente apropriado por pseudociências que distorcem seus conceitos para promover ideias místicas ou mercadológicas. É crucial distinguir o rigor científico do discurso especulativo e comercial.
   </p>
 
-  <h2>7. Conclusão</h2>
+  <h2>VII. Conclusão</h2>
   <p>
     Os avanços em QFT impõem uma revisão profunda do entendimento da realidade: a multiplicidade observada é um fenômeno emergente de um substrato quântico fundamental e único. O "oceano quântico" é a base ontológica do universo, onde tudo está interconectado por excitações de campos universais.
   </p>
@@ -144,57 +179,5 @@
       <li>[6] C. Rovelli, <em>Reality Is Not What It Seems: The Journey to Quantum Gravity</em>, Riverhead Books, 2016.</li>
     </ul>
   </footer>
-
-  <script>
-    const canvas = document.getElementById('stars');
-    const ctx = canvas.getContext('2d');
-    let stars = [];
-    const FPS = 60;
-
-    function initStars() {
-      stars = [];
-      for (let i = 0; i < 100; i++) {
-        stars.push({
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight,
-          radius: Math.random() * 1.5,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5
-        });
-      }
-    }
-
-    function drawStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#00fff7";
-      ctx.beginPath();
-      for (let s of stars) {
-        ctx.moveTo(s.x, s.y);
-        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
-      }
-      ctx.fill();
-      moveStars();
-    }
-
-    function moveStars() {
-      for (let s of stars) {
-        s.x += s.vx;
-        s.y += s.vy;
-        if (s.x < 0 || s.x > canvas.width) s.vx = -s.vx;
-        if (s.y < 0 || s.y > canvas.height) s.vy = -s.vy;
-      }
-    }
-
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initStars();
-    }
-
-    window.addEventListener('resize', resize);
-    resize();
-
-    setInterval(drawStars, 1000 / FPS);
-  </script>
 </body>
 </html>
