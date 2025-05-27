@@ -157,7 +157,6 @@
     <div id="accessGranted">ACCESS GRANTED</div>
   </div>
 
-  <!-- Conteúdo principal -->
   <canvas id="stars"></canvas>  
   <div id="mainContent">
     <a href="portfolio.html" target="_blank">Portfólio - Quem sou eu?</a><br>
@@ -167,13 +166,11 @@
     <p>A compreensão do mundo se dá pela lógica fria das equações. Carne e ossos se rendem à mecânica e robótica.<br>Você é humano-máquina, parte da rede global 24 horas por dia.</p>
     <h1>Bem-vindos ao mundo Cyberpunk!</h1>
     <a href="https://discord.gg/n5rYTvFR" target="_blank">Junte-se</a><br>
-  <!-- não veja isso, poupe seus olhos
-    <a href="c2.html" target="_blank">C2 - Painel de invasões - Command & Control</a>
- -->
+    <a href="https://b3c001.github.io/papers/" target="_blank">Artigos</a>
   </div>
 
   <script>
-    // Animação de partículas
+   
     const canvas = document.getElementById('stars');
     const ctx = canvas.getContext('2d');
 
@@ -222,15 +219,15 @@
 
     window.dispatchEvent(new Event('resize'));
 
-    // Controle da intro
+  
     setTimeout(() => {
       document.getElementById('accessGranted').style.display = 'block';
-    }, 4000); // após o loading
+    }, 4000); 
 
     setTimeout(() => {
       document.getElementById('intro').style.display = 'none';
       document.getElementById('mainContent').style.display = 'block';
-    }, 6000); // mostra o conteúdo depois
+    }, 6000);
   </script>
 
 </body>
